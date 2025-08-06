@@ -1,0 +1,164 @@
+         /*
+         * A CSS reset to ensure consistent box model behavior across all browsers.
+         * The box-sizing: border-box; property makes padding and borders not increase the element's width/height.
+         */
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        /* Basic body styling for background color and font family */
+        body {
+            background-color: rgb(241, 234, 234);
+            font-family: "Poppins", sans-serif;
+        }
+
+        /*
+          Main heading style for the page
+         */
+        .main-heading {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        /*
+          The main container for all the cards.
+          It uses Flexbox to create a responsive grid that wraps cards to a new line
+          when the viewport size decreases.
+         */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        /*
+          The container for a single card.
+          It also uses Flexbox with flex-direction: column to stack its children vertically.
+         
+          The `flex: 1 1 350px` property is key for responsiveness:
+           flex-grow: 1 allows the card to grow and fill available space.
+           flex-shrink: 1 allows it to shrink on smaller screens.
+           flex-basis: 350px sets a base size, causing cards to wrap when the space is too small.
+         
+          max-width caps the size on large screens to maintain a clean layout.
+         */
+        .parent {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 9px;
+            background-color: white;
+            min-height: 590px;
+            flex: 1 1 350px;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /*
+         This selector targets the content section of the card (all children of .parent except the image).
+         It's set to a Flexbox container to allow the footer to be pushed to the bottom.
+         */
+        .parent>div:not(.image) {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        /* Styles for the image inside the card */
+        img {
+            border: 8px solid white;
+            border-radius: 20px;
+            width: 100%;
+            height: 300px;
+            /* object-fit: cover ensures the image fills the container without distortion */
+            object-fit: cover;
+        }
+
+        /* Styles for the image container to set its dimensions */
+        .image {
+            width: 100%;
+            height: 300px;
+        }
+
+        /* Styles for the tags/labels at the top of the card */
+        .list span {
+            display: inline-block;
+            padding: 3px 6px;
+            border: 1px solid lightgray;
+            border-radius: 20px;
+            background-color: white;
+            color: gray;
+            margin: 5px 10px 7px 35px;
+        }
+
+        /* Styles for the main heading of the card */
+        .heading {
+            margin: 8px 15px;
+            text-align: center;
+        }
+
+        /*
+         Styles for the paragraph section.
+         flex-grow: 1 allows the paragraph to take up all available vertical space,
+         which helps push the footer down.
+         */
+        .para {
+            margin: 15px;
+            color: gray;
+            line-height: 1.3;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        /* Styles for the button inside the footer */
+        .footer span {
+            display: inline-block;
+            border-radius: 25px;
+            border: none;
+            background-color: rgb(206, 228, 236);
+            padding: 10px 20px;
+            color: rgb(47, 123, 194);
+            margin-bottom: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Hover effect for the button */
+        .footer span:hover {
+            color: rgb(206, 228, 236);
+            background-color: rgb(47, 123, 194);
+        }
+
+        /*
+         Styles for the footer section.
+         margin-top: auto is a key Flexbox property that pushes the element to the end of the container,
+         ensuring the "Read More" button is always at the bottom of the card.
+         */
+        .footer {
+            text-align: center;
+            margin-top: auto;
+            padding-bottom: 20px;
+        }
+
+        /*
+          Media query for mobile devices.
+          On screens 400px or smaller, each card takes up the full width,
+          creating a clean single-column layout.
+         */
+        @media (max-width: 400px) {
+            .parent {
+                width: 100%;
+                /* Override flex-basis for full width on small screens */
+            }
+
+            .list span {
+                margin: 5px 10px 7px 20px;
+                /* Adjust tag margins for better spacing on mobile */
+            }
+        }
